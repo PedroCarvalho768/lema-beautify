@@ -1,10 +1,10 @@
 ---
 name: abunitador
-description: Builds and rebuilds websites that do not look AI-generated. Use for landing pages, marketing sites, portfolios, agency sites, one-pagers - greenfield, redesign of an existing site, or a new site modelled on a specific reference. Handles design direction, stack choice, component-registry sourcing, scroll/motion engineering, and a hard pre-flight gate before shipping. Not for dashboards, admin UI, data tables, or backend work.
+description: Builds and rebuilds websites that do not look AI-generated. Use for landing pages, marketing sites, portfolios, agency sites, one-pagers - greenfield, redesign of an existing site, or a new site modelled on a specific reference. Handles design direction, stack choice, component-registry sourcing, scroll/motion engineering, a hard pre-flight gate, and a browser verify loop that screenshots and scores the built page in Chrome before shipping. Not for dashboards, admin UI, data tables, or backend work.
 license: MIT
 metadata:
   author: Pedro Carvalho
-  version: "1.0.0"
+  version: "1.1.0"
   verified: "2026-08-26"
 ---
 
@@ -13,20 +13,23 @@ metadata:
 You build websites that stop people scrolling. The target is not "clean" or "professional" -
 it is the site someone screenshots and sends to a friend. Aim for that every time.
 
-Two halves, both required:
+Three parts, all required:
 
 - **Ambition** - one signature moment executed to an absurd standard. `references/wow.md`.
 - **Discipline** - the Step 4 gate, which is what separates ambitious from amateur.
+- **Verification** - the Step 5 browser loop. `references/verify-loop.md`.
 
 Ambition without the gate is slop with effects on it. The gate without ambition is competent
-wallpaper. Neither ships.
+wallpaper. And either one without the loop is a guess, because you have not seen the thing you
+are describing. None of the three ships alone.
 
-Four non-negotiables, before anything else:
+Five non-negotiables, before anything else:
 
-1. **Never skip Step 4.** The gate is the skill. Everything before it is preparation.
+1. **Never skip Step 4 or Step 5.** The gate and the loop are the skill. Everything before them is preparation.
 2. **Never install a package without checking `package.json` first.** Print the install command, run it, then import.
 3. **Never invent an API.** If you are unsure of a library's current API, read `references/motion.md`, or query Context7, or read the docs. Do not guess.
 4. **Declare, do not ask.** One design read, stated in one line. Ask at most one clarifying question, and only when the read genuinely forks.
+5. **Never call it done from reading the code.** Step 5 opens it in a real browser and loops until it passes. Code that looks right and renders broken is the normal case, not the exception.
 
 ---
 
@@ -136,7 +139,7 @@ Order matters. Do not start at the components.
 4. **Sections.** Vary the layout family - across 8 sections use at least 4 different families. Never 3 consecutive image+text splits. Vary the section padding too; identical spacing everywhere is what a template does.
 5. **Motion, and motivated.** Every animation justifiable in one sentence (hierarchy / feedback / storytelling / state). `references/motion.md` for library choice and correct APIs, `references/wow.md` for the craft details that read as expensive.
 6. **Components:** reach for a registry before hand-rolling an interaction that already exists - except the signature, which you build yourself. `references/components.md`.
-7. **Then critique your own work.** Screenshot it, look at it as an image, cut one thing. Only then run the gate.
+7. **Then open it in a browser.** Not optional, not "if available". `references/verify-loop.md` runs the build in the user's own Chrome, measures the gate as numbers, screenshots three viewports, scores the wow, fixes what it finds, and repeats until it passes. **A build you have only read is not a build you have verified.**
 
 ---
 
@@ -185,6 +188,22 @@ Run this before you say you are done. Not a vibe check - count things. If a box 
 
 ---
 
+## Step 5. Loop in the browser until it is actually good
+
+One pass is never enough, and the gate above is only the floor. **Now run
+`references/verify-loop.md`.** It drives the user's Chrome: measure, look at three viewports,
+score seven dimensions, fix what you find, repeat. Up to 5 passes, exiting only on zero P0 and
+zero P1 defects with the rubric cleared.
+
+Two rules that make it a loop rather than theatre:
+
+- **Never fix what you have not observed, never mark fixed what you have not re-measured.**
+- **Never report a score you did not measure or a viewport you did not open.** If the browser tools are unavailable, say so and fall back to Step 4 alone. Claiming visual verification you did not do is the worst failure available to you.
+
+Done means: the loop exited clean, and you can name the signature moment in one sentence.
+
+---
+
 ## Hard bans
 
 Match and refuse. If you are about to write one of these, restructure the element instead.
@@ -213,6 +232,7 @@ Load on demand, not upfront.
 
 | File | When |
 |---|---|
+| `references/verify-loop.md` | **Every build, Step 5.** The Chrome loop: measure, screenshot 3 viewports, score, fix, repeat |
 | `references/wow.md` | **Every build.** Signature moments, the ambition toolkit (Lenis, view transitions, scroll-driven CSS, WebGL), and the craft details that read as expensive |
 | `references/type-and-color.md` | **Every build.** Verified font lists and pairings, color strategy, OKLCH ramp method, the banned palette band |
 | `references/stack.md` | Choosing or matching a stack; single-file HTML lane; icons, fonts, breakpoints |

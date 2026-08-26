@@ -21,7 +21,12 @@ Then, in order:
 2. State the design read in one line and set the three dials with reasons.
 3. Name the signature moment - the one sentence someone will use to describe this page.
 4. Build: tokens, type, signature, sections, motion. Install the packages the direction needs - do not print commands and import anyway.
-5. Run the Step 4 gate. Every box, including `node scripts/contrast.mjs` on the real token pairs. Report which ones you had to fix.
+5. Run the Step 4 gate. Every box, including `node scripts/contrast.mjs` on the real token pairs.
+6. Run the Step 5 browser loop (`references/verify-loop.md`) in the user's Chrome. Measure, screenshot 390 / 768 / 1440, score, fix, repeat until zero P0 and zero P1. Up to 5 passes.
 
-Hand back: what you built, the signature moment named in one sentence, the gate result, and
-anything you deliberately left out and why. Never report done on a gate you did not run.
+Hand back: what you built, the signature moment named in one sentence, the gate result, the
+number of loop passes with the defect ledger, the final rubric scores, and anything you
+deliberately left out and why.
+
+Never report done on a gate you did not run or a page you did not open in a browser. If the
+browser tools are unavailable, say so explicitly rather than implying you looked.

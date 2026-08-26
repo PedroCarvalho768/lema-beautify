@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "abunitador",
-      "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference.",
+      "description": "Builds and rebuilds websites that do not look AI-generated, then loops in Chrome screenshotting and scoring the result until it passes. Landing pages, marketing sites, portfolios.",
       "author": {
         "name": "Pedro Carvalho"
       },
