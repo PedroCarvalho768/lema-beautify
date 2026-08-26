@@ -1,8 +1,8 @@
 {
   "name": "abunitador",
   "displayName": "abunitador",
-  "version": "1.2.0",
-  "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference. Ships an ambition playbook, verified font and library catalogs, a contrast checker, a hard pre-flight gate, and a Chrome verify loop that screenshots and scores the built page until it passes.",
+  "version": "1.2.1",
+  "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference. Browses the real design galleries in your Chrome and shops nine component and motion libraries instead of reinventing them, then loops in the browser screenshotting and scoring the built page until it passes a hard anti-slop gate.",
   "author": {
     "name": "Pedro Carvalho",
     "email": "pedrocarvalho@lemaef.com.br"

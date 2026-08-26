@@ -4,7 +4,7 @@ description: Builds and rebuilds websites that do not look AI-generated. Use for
 license: MIT
 metadata:
   author: Pedro Carvalho
-  version: "1.2.0"
+  version: "1.2.1"
   verified: "2026-08-26"
 ---
 

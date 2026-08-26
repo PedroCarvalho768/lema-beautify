@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "abunitador",
-      "description": "Builds and rebuilds websites that do not look AI-generated, then loops in Chrome screenshotting and scoring the result until it passes. Landing pages, marketing sites, portfolios.",
+      "description": "Builds websites that do not look AI-generated: browses real design galleries in your Chrome, shops the component registries instead of reinventing them, then loops screenshotting and scoring the result until it passes.",
       "author": {
         "name": "Pedro Carvalho"
       },

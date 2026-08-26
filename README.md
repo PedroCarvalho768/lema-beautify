@@ -59,11 +59,10 @@ The relative `"source"` in each manifest resolves against whatever directory the
 was added from, so **the same files work for a local path and for a pushed GitHub repo**. No
 `github` source block is needed.
 
-**Caveat:** the installer copies into a version-pinned cache directory
-(`~/.claude/plugins/cache/abunitador/abunitador/<version>/`). Edits to the source do **not**
-propagate. When iterating, bump `version` in both `.claude-plugin/plugin.json` and the
-SKILL.md frontmatter, then `claude plugin marketplace update abunitador` and reinstall - or
-just use path 1, which reads the directory in place.
+**Caveat for authors:** the installer copies into a version-pinned cache directory
+(`~/.claude/plugins/cache/abunitador/abunitador/<version>/`). Your local edits do **not**
+propagate to an installed copy. While iterating, use path 1 - a symlink or junction reads the
+directory in place.
 
 ### 3. `npx skills add`
 
@@ -83,6 +82,43 @@ node scripts/setup.mjs --install  # install them
 
 Then `/abunitador <brief>`, or just describe the site - the description triggers it.
 
+## Updating
+
+**Installed as a plugin** - one command, then restart Claude Code:
+
+```bash
+claude plugin update abunitador
+```
+
+It reports the version it moved to, or tells you it is already current
+(`abunitador is already at the latest version (X.Y.Z).`). Add `-y` in a non-interactive
+shell. A restart is required before the new version loads.
+
+If it does not see a new release, the marketplace clone is stale - refresh it first:
+
+```bash
+claude plugin marketplace update abunitador
+claude plugin update abunitador
+```
+
+**Installed via `npx skills add`:**
+
+```bash
+npx skills update abunitador
+```
+
+**Installed by copy** - re-copy, or switch to a symlink/junction so it never goes stale:
+
+```bash
+# Windows, no admin needed
+New-Item -ItemType Junction -Path "$HOME/.claude/skills/abunitador" -Target "<path to repo>"
+# macOS / Linux
+ln -s <path to repo> ~/.claude/skills/abunitador
+```
+
+**Symlink or junction installs need no update step** - they read the repo in place, so
+`git pull` is the whole update. Changes apply on the next session.
+
 ## Publishing checklist
 
 ```bash
@@ -91,11 +127,16 @@ claude plugin validate .claude-plugin/plugin.json --strict
 node --check scripts/setup.mjs && node --check scripts/contrast.mjs
 node scripts/contrast.mjs "#767676" "#fff"         # expect PASS 4.54:1
 git status --porcelain                             # must be clean of scratch files
+claude plugin tag --dry-run                        # checks the versions agree
 ```
+
+`claude plugin tag` creates an `abunitador--v<version>` git tag and **refuses unless
+plugin.json and the enclosing marketplace entry agree**, which is the version-mismatch trap
+below caught mechanically. `--push` sends it to origin; `--dry-run` just checks.
 
 Before pushing:
 
-1. Bump `version` in **both** `.claude-plugin/plugin.json` and the SKILL.md frontmatter. They are read separately and a mismatch is silent.
+1. Bump `version` in **both** `.claude-plugin/plugin.json` and the SKILL.md frontmatter, and update the manifest `description` if the feature set changed - that string is what the marketplace shows. `claude plugin tag --dry-run` catches a version mismatch; nothing catches a stale description.
 2. If the repo moves, update `homepage` and `repository` in `.claude-plugin/plugin.json`. Nothing validates them, so a stale URL just 404s silently.
 3. Update the `verified` date in the SKILL.md frontmatter if you re-checked the font or library catalogs.
 4. Check `git status`, do not trust `.gitignore`. An 831 KB font-API dump got packaged into a build once because a verification run wrote it next to the skill.
