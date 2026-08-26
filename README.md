@@ -25,13 +25,19 @@ on the next session - the skill and the `abunitador` subagent both register, no 
 
 Two repo shapes are supported, and both were installed end to end before this was written.
 
-**Standalone repo** - `abunitador/` is the repo root, using its own
-`.claude-plugin/marketplace.json`:
+**From GitHub** - what anyone else runs, verified against the live repo:
 
 ```bash
-claude plugin marketplace add ./abunitador       # or PedroCarvalho768/abunitador once pushed
+claude plugin marketplace add PedroCarvalho768/abunitador
 claude plugin install abunitador@abunitador -y
 claude plugin details abunitador@abunitador
+```
+
+**From a local checkout** - same manifest, added by path instead:
+
+```bash
+claude plugin marketplace add ./abunitador     # `.` alone is rejected; needs ./path
+claude plugin install abunitador@abunitador -y
 ```
 
 **Inside the `my-skills` monorepo** - using the parent's
@@ -59,10 +65,11 @@ just use path 1, which reads the directory in place.
 ### 3. `npx skills add`
 
 ```bash
-npx skills add <owner>/<repo> -g --all
+npx skills add PedroCarvalho768/abunitador -g --all
 ```
 
-Discovers `SKILL.md` in the repo. For a multi-skill repo add `--full-depth`.
+Verified: the CLI clones the repo and reports `Found 1 skill - abunitador`. Add `--list` to
+see what it found without installing, or `--full-depth` for a multi-skill repo.
 
 ### Then
 
@@ -86,11 +93,11 @@ git status --porcelain                             # must be clean of scratch fi
 Before pushing:
 
 1. Bump `version` in **both** `.claude-plugin/plugin.json` and the SKILL.md frontmatter. They are read separately and a mismatch is silent.
-2. Add `homepage` and `repository` to `.claude-plugin/plugin.json` once the repo URL is real. They are deliberately absent rather than guessed - a 404 in a published manifest is worse than a missing optional field.
+2. If the repo moves, update `homepage` and `repository` in `.claude-plugin/plugin.json`. Nothing validates them, so a stale URL just 404s silently.
 3. Update the `verified` date in the SKILL.md frontmatter if you re-checked the font or library catalogs.
 4. Check `git status`, do not trust `.gitignore`. An 831 KB font-API dump got packaged into a build once because a verification run wrote it next to the skill.
 
-Only `abunitador/` needs to ship. The parent `.claude-plugin/marketplace.json` is only used
+Only `abunitador/` needs to ship. The parent `.claude-plugin/marketplace.json` in `my-skills/` is only used
 if you publish the monorepo.
 
 ## Layout
