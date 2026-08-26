@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "abunitador",
+  "description": "abunitador: an agent for building websites that do not look AI-generated",
+  "owner": {
+    "name": "Pedro Carvalho",
+    "email": "pedrocarvalho@lemaef.com.br"
+  },
+  "plugins": [
+    {
+      "name": "abunitador",
+      "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference.",
+      "author": {
+        "name": "Pedro Carvalho"
+      },
+      "category": "design",
+      "source": "./"
+    }
+  ]
+}

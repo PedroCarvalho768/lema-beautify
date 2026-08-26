@@ -1,0 +1,24 @@
+{
+  "name": "abunitador",
+  "displayName": "abunitador",
+  "version": "1.0.0",
+  "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference. Ships with an ambition playbook, verified font and library catalogs, a contrast checker, and a hard pre-flight gate.",
+  "author": {
+    "name": "Pedro Carvalho",
+    "email": "pedrocarvalho@lemaef.com.br"
+  },
+  "homepage": "https://github.com/PedroCarvalho768/abunitador",
+  "repository": "https://github.com/PedroCarvalho768/abunitador",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "frontend",
+    "landing-page",
+    "website",
+    "redesign",
+    "motion",
+    "gsap",
+    "tailwind",
+    "anti-slop"
+  ]
+}

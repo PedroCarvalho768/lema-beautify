@@ -1,0 +1,15 @@
+# Local harness state, not part of the distributed skill
+.claude/settings.local.json
+.claude/skills/
+
+# Scratch. Verification dumps (font catalogs, API responses) belong in a temp dir,
+# not next to the skill - one of these shipped inside the packaged plugin once.
+*.log
+fs.json
+gf.json
+pairs.txt
+
+# Tooling
+node_modules/
+.DS_Store
+Thumbs.db
