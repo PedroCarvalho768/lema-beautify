@@ -6,6 +6,29 @@ Reach for a registry when the interaction already exists and is fiddly (3D card 
 
 **Before any of these:** the project needs shadcn/ui initialised (`npx shadcn@latest init`) and `components.json` present. These are registries, not npm packages - the CLI copies source into your repo and you own it from then on.
 
+## Read the catalog before guessing a name
+
+Several of these publish machine-readable catalogs. A guessed component name is a failed
+install, so read first:
+
+| Endpoint | What |
+|---|---|
+| `https://ui.aceternity.com/registry.json` | all 278 components as `items[].name` + `type` |
+| `https://ui.aceternity.com/llms.txt` | ~74 KB agent catalog |
+| `https://kokonutui.com/llms.txt` | index linking each component to a `.md` with install command and full source |
+| `https://ui.unlumen.com/llms.txt` | short pointer to docs and gallery |
+
+Skiper UI, Bklit and OriginKit publish no `llms.txt` - browse them in Chrome.
+
+**Wire the shadcn MCP server once per project** and registries become reachable by name
+instead of by copy-pasted CLI:
+
+```bash
+npx shadcn@latest mcp init --client claude
+```
+
+It discovers registries from the `registries` block in `components.json` (see below).
+
 ## The registries
 
 | Source | Add a component | What it is | Cost |

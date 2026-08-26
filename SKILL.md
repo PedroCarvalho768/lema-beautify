@@ -4,7 +4,7 @@ description: Builds and rebuilds websites that do not look AI-generated. Use for
 license: MIT
 metadata:
   author: Pedro Carvalho
-  version: "1.1.0"
+  version: "1.2.0"
   verified: "2026-08-26"
 ---
 
@@ -13,23 +13,26 @@ metadata:
 You build websites that stop people scrolling. The target is not "clean" or "professional" -
 it is the site someone screenshots and sends to a friend. Aim for that every time.
 
-Three parts, all required:
+Four parts, all required:
 
+- **Sourcing** - look at real work, then shop the registries instead of reinventing them. Step 2.5, `references/sourcing.md`.
 - **Ambition** - one signature moment executed to an absurd standard. `references/wow.md`.
 - **Discipline** - the Step 4 gate, which is what separates ambitious from amateur.
 - **Verification** - the Step 5 browser loop. `references/verify-loop.md`.
 
 Ambition without the gate is slop with effects on it. The gate without ambition is competent
-wallpaper. And either one without the loop is a guess, because you have not seen the thing you
-are describing. None of the three ships alone.
+wallpaper. Either one without the loop is a guess, because you have not seen the thing you are
+describing. And all three without sourcing means you spent the budget rebuilding a spotlight
+card that already existed. None of them ships alone.
 
-Five non-negotiables, before anything else:
+Six non-negotiables, before anything else:
 
 1. **Never skip Step 4 or Step 5.** The gate and the loop are the skill. Everything before them is preparation.
 2. **Never install a package without checking `package.json` first.** Print the install command, run it, then import.
 3. **Never invent an API.** If you are unsure of a library's current API, read `references/motion.md`, or query Context7, or read the docs. Do not guess.
 4. **Declare, do not ask.** One design read, stated in one line. Ask at most one clarifying question, and only when the read genuinely forks.
 5. **Never call it done from reading the code.** Step 5 opens it in a real browser and loops until it passes. Code that looks right and renders broken is the normal case, not the exception.
+6. **Never hand-roll an effect a registry already ships.** Step 2.5 first. Build the signature moment yourself; shop the supporting cast. Reinventing a tilt card is waste, not craft.
 
 ---
 
@@ -129,6 +132,35 @@ next session anyway.
 
 ---
 
+## Step 2.5. Source the effects
+
+**Do not start building until you have done this.** Read `references/sourcing.md` and come
+back with two lists.
+
+1. **Three real references, looked at.** The galleries (mobbin, saaspo, recent.design,
+   motionsites) 403 plain fetches but open fine in the user's Chrome - the same tooling Step 5
+   uses. Ask once, then browse. One reference makes a clone; three make a synthesis.
+2. **A shortlist of components you will install rather than write.** Aceternity enumerates all
+   278 of its components at `ui.aceternity.com/registry.json`; Kokonut, Motion and GSAP publish
+   `llms.txt` catalogs. Grep them for the effect you need. Guessing a component name is an
+   install that fails.
+
+Wire the shadcn MCP server once per project so registries are reachable by name:
+
+```bash
+npx shadcn@latest mcp init --client claude
+```
+
+**Build the signature moment yourself. Shop everything around it.** An effect that came from a
+registry is on a thousand other sites, so it cannot be the thing your page is remembered by -
+but hand-rolling a worse spotlight card than the one Aceternity ships is not craft, it is
+waste. Retheme everything you install; default colours and radii are a visible tell.
+
+Cap it at two registries per project, and never write an import for a Pro component the user
+has not paid for.
+
+---
+
 ## Step 3. Build
 
 Order matters. Do not start at the components.
@@ -138,7 +170,7 @@ Order matters. Do not start at the components.
 3. **Name the signature moment.** Before any section markup, write the one sentence someone will use to describe this page to a friend. **Read `references/wow.md` and choose it deliberately** - it must come from this subject's own world, not from a list of impressive effects. Then keep everything around it quiet so it lands. A page with no signature is a template; a page with three has none.
 4. **Sections.** Vary the layout family - across 8 sections use at least 4 different families. Never 3 consecutive image+text splits. Vary the section padding too; identical spacing everywhere is what a template does.
 5. **Motion, and motivated.** Every animation justifiable in one sentence (hierarchy / feedback / storytelling / state). `references/motion.md` for library choice and correct APIs, `references/wow.md` for the craft details that read as expensive.
-6. **Components:** reach for a registry before hand-rolling an interaction that already exists - except the signature, which you build yourself. `references/components.md`.
+6. **Components:** install from the Step 2.5 shortlist. Retheme each one to your tokens before moving on. `references/sourcing.md` and `references/components.md`.
 7. **Then open it in a browser.** Not optional, not "if available". `references/verify-loop.md` runs the build in the user's own Chrome, measures the gate as numbers, screenshots three viewports, scores the wow, fixes what it finds, and repeats until it passes. **A build you have only read is not a build you have verified.**
 
 ---
@@ -232,6 +264,7 @@ Load on demand, not upfront.
 
 | File | When |
 |---|---|
+| `references/sourcing.md` | **Every build, Step 2.5.** Reference galleries via Chrome, machine-readable registry catalogs, shadcn MCP, effect-to-source map |
 | `references/verify-loop.md` | **Every build, Step 5.** The Chrome loop: measure, screenshot 3 viewports, score, fix, repeat |
 | `references/wow.md` | **Every build.** Signature moments, the ambition toolkit (Lenis, view transitions, scroll-driven CSS, WebGL), and the craft details that read as expensive |
 | `references/type-and-color.md` | **Every build.** Verified font lists and pairings, color strategy, OKLCH ramp method, the banned palette band |

@@ -14,10 +14,13 @@ Checked 2026-08-26. Most inspiration galleries block non-browser clients or sit 
 
 So:
 
-- **Do not claim to have looked at a reference you could not load.** Say the fetch failed and ask for what you need.
-- **The user's own browser can reach all of them.** When the user wants a specific reference mined, drive Chrome (the `claude-in-chrome` tools) in their logged-in session: navigate, screenshot, `read_page`. Ask before doing it - it uses their account.
-- **Screenshots are the highest-bandwidth input.** One screenshot beats three paragraphs of description. Ask for them.
-- **getlayers and motionsites sell prompts.** If the user has a prompt from one, treat it as the brief - then still run this skill's Step 1 and Step 4 over the result. A purchased prompt is not a substitute for the gate.
+- **Do not surrender to the 403.** A plain fetch fails; the user's Chrome does not. Drive it with the `mcp__claude-in-chrome__*` tools in their own logged-in session - the same tooling Step 5 uses. `tabs_context_mcp { createIfEmpty: true }`, then `tabs_create_mcp`, `navigate`, `computer { action: "screenshot" }`. Ask once before browsing, since it uses their account and their subscriptions.
+- **Do not claim to have looked at a reference you could not load.** If browsing is refused or unavailable, say the fetch failed and ask for screenshots. Never describe a page you did not see.
+- **Screenshots are still the highest-bandwidth input.** If the user already has them, that beats browsing.
+- **Pull three, not one.** One reference produces a clone. Three produce a synthesis, which is the only honest way to use someone else's work.
+- **getlayers and motionsites sell prompts.** If the user has one, treat it as the brief - then still run Step 1 and the Step 4 gate over the result. A purchased prompt is not a substitute for the gate.
+
+Full browsing procedure and the registry-shopping half of this step: `sourcing.md`.
 
 ## Extracting a system from a reference
 

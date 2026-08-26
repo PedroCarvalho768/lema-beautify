@@ -3,10 +3,11 @@
 An agent for building websites that do not look AI-generated. Landing pages, marketing sites,
 portfolios, agency sites. Greenfield, redesign, or modelled on a specific reference.
 
-Three parts, all required: an ambition playbook (one signature moment, executed absurdly
-well), a hard pre-flight gate (~35 mechanical checks that catch the tells), and a browser
-verify loop that drives your own Chrome - measure, screenshot three viewports, score, fix,
-repeat until it passes.
+Four parts, all required: a sourcing step that browses the real galleries in your Chrome and
+shops nine component and motion libraries instead of reinventing them, an ambition playbook
+(one signature moment, executed absurdly well), a hard pre-flight gate (~35 mechanical checks
+that catch the tells), and a browser verify loop - measure, screenshot three viewports, score,
+fix, repeat until it passes.
 
 ## Install
 
@@ -106,6 +107,7 @@ if you publish the monorepo.
 
 ```
 SKILL.md                        setup -> mode -> read -> brains -> build -> gate -> browser loop
+references/sourcing.md          galleries via Chrome, registry catalogs, shadcn MCP, effect->source
 references/verify-loop.md       the Chrome loop: measure, screenshot, score, fix, repeat
 references/wow.md               signature moments, ambition toolkit, expensive-feeling craft
 references/type-and-color.md    verified font lists and pairings, color strategy, OKLCH ramps
