@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "abunitador",
-  "description": "abunitador: an agent for building websites that do not look AI-generated",
+  "name": "lema-beautify",
+  "description": "lema-beautify: an agent for building websites that do not look AI-generated",
   "owner": {
     "name": "Pedro Carvalho",
     "email": "pedrocarvalho@lemaef.com.br"
   },
   "plugins": [
     {
-      "name": "abunitador",
+      "name": "lema-beautify",
       "description": "Builds websites that do not look AI-generated: browses real design galleries in your Chrome, shops the component registries instead of reinventing them, then loops screenshotting and scoring the result until it passes.",
       "author": {
         "name": "Pedro Carvalho"

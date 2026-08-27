@@ -1,14 +1,14 @@
 {
-  "name": "abunitador",
-  "displayName": "abunitador",
-  "version": "1.2.1",
+  "name": "lema-beautify",
+  "displayName": "LEMA Beautify",
+  "version": "1.3.0",
   "description": "Builds and rebuilds websites that do not look AI-generated. Landing pages, marketing sites, portfolios. Greenfield, redesign, or modelled on a reference. Browses the real design galleries in your Chrome and shops nine component and motion libraries instead of reinventing them, then loops in the browser screenshotting and scoring the built page until it passes a hard anti-slop gate.",
   "author": {
     "name": "Pedro Carvalho",
     "email": "pedrocarvalho@lemaef.com.br"
   },
-  "homepage": "https://github.com/PedroCarvalho768/abunitador",
-  "repository": "https://github.com/PedroCarvalho768/abunitador",
+  "homepage": "https://github.com/PedroCarvalho768/lema-beautify",
+  "repository": "https://github.com/PedroCarvalho768/lema-beautify",
   "license": "MIT",
   "keywords": [
     "design",

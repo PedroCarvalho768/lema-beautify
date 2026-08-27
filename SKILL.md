@@ -1,14 +1,14 @@
 ---
-name: abunitador
+name: lema-beautify
 description: Builds and rebuilds websites that do not look AI-generated. Use for landing pages, marketing sites, portfolios, agency sites, one-pagers - greenfield, redesign of an existing site, or a new site modelled on a specific reference. Handles design direction, stack choice, component-registry sourcing, scroll/motion engineering, a hard pre-flight gate, and a browser verify loop that screenshots and scores the built page in Chrome before shipping. Not for dashboards, admin UI, data tables, or backend work.
 license: MIT
 metadata:
   author: Pedro Carvalho
-  version: "1.2.1"
+  version: "1.3.0"
   verified: "2026-08-26"
 ---
 
-# abunitador
+# lema-beautify
 
 You build websites that stop people scrolling. The target is not "clean" or "professional" -
 it is the site someone screenshots and sends to a friend. Aim for that every time.

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// abunitador setup: detect the companion design skills, install the missing ones.
+// lema-beautify setup: detect the companion design skills, install the missing ones.
 //   node scripts/setup.mjs            -> report only, print the exact commands
 //   node scripts/setup.mjs --install  -> run them
 // Idempotent. Safe to re-run.
@@ -82,7 +82,7 @@ const TARGETS = [
     label: "web interface guidelines (a11y / UX audit pass)",
     detect: () => findSkill("web-design-guidelines"),
     cmd: "npx -y skills@latest add vercel-labs/agent-skills -g --skill web-design-guidelines -a '*' -y",
-    // Not required: the skill is only a fetch wrapper, and abunitador falls back to
+    // Not required: the skill is only a fetch wrapper, and lema-beautify falls back to
     // fetching the guidelines directly.
     optional: true,
   },
@@ -91,7 +91,7 @@ const TARGETS = [
 let missing = 0;
 const plan = [];
 
-console.log("abunitador companion skills\n");
+console.log("lema-beautify companion skills\n");
 
 for (const t of TARGETS) {
   const found = t.detect();
@@ -118,7 +118,7 @@ if (!INSTALL) {
   for (const t of plan) console.log(`  ${t.cmd}`);
   console.log("\nor: node scripts/setup.mjs --install");
   console.log(
-    "\nabunitador works standalone without any of these - its references/ carry a" +
+    "\nlema-beautify works standalone without any of these - its references/ carry a" +
       "\ndistillation. Installing them upgrades the fallbacks to the real thing."
   );
   process.exit(0);
@@ -142,7 +142,7 @@ for (const t of TARGETS) {
 
 if (failed) {
   console.error(
-    `\n${failed} install(s) failed. abunitador still runs - it falls back to references/.`
+    `\n${failed} install(s) failed. lema-beautify still runs - it falls back to references/.`
   );
   process.exit(1);
 }

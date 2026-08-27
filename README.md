@@ -1,4 +1,4 @@
-# abunitador
+# lema-beautify
 
 An agent for building websites that do not look AI-generated. Landing pages, marketing sites,
 portfolios, agency sites. Greenfield, redesign, or modelled on a specific reference.
@@ -16,13 +16,13 @@ Three paths. All three were tested end to end on 2026-08-26, not assumed.
 ### 1. Copy (simplest)
 
 ```bash
-cp -r abunitador ~/.claude/skills/abunitador     # per-user
-cp -r abunitador .claude/skills/abunitador       # per-project
+cp -r lema-beautify ~/.claude/skills/lema-beautify     # per-user
+cp -r lema-beautify .claude/skills/lema-beautify       # per-project
 ```
 
 Because this directory carries `.claude-plugin/plugin.json`, dropping it under
-`~/.claude/skills/` also makes Claude Code load it as a plugin named `abunitador@skills-dir`
-on the next session - the skill and the `abunitador` subagent both register, no install step.
+`~/.claude/skills/` also makes Claude Code load it as a plugin named `lema-beautify@skills-dir`
+on the next session - the skill and the `lema-beautify` subagent both register, no install step.
 
 ### 2. Plugin, via marketplace
 
@@ -31,28 +31,28 @@ Two repo shapes are supported, and both were installed end to end before this wa
 **From GitHub** - what anyone else runs, verified against the live repo:
 
 ```bash
-claude plugin marketplace add PedroCarvalho768/abunitador
-claude plugin install abunitador@abunitador -y
-claude plugin details abunitador@abunitador
+claude plugin marketplace add PedroCarvalho768/lema-beautify
+claude plugin install lema-beautify@lema-beautify -y
+claude plugin details lema-beautify@lema-beautify
 ```
 
 **From a local checkout** - same manifest, added by path instead:
 
 ```bash
-claude plugin marketplace add ./abunitador     # `.` alone is rejected; needs ./path
-claude plugin install abunitador@abunitador -y
+claude plugin marketplace add ./lema-beautify     # `.` alone is rejected; needs ./path
+claude plugin install lema-beautify@lema-beautify -y
 ```
 
 **Inside the `my-skills` monorepo** - using the parent's
-`.claude-plugin/marketplace.json`, which lists `./abunitador`:
+`.claude-plugin/marketplace.json`, which lists `./lema-beautify`:
 
 ```bash
 claude plugin marketplace add ./my-skills        # or PedroCarvalho768/my-skills once pushed
-claude plugin install abunitador@pedro-skills -y
-claude plugin details abunitador@pedro-skills
+claude plugin install lema-beautify@pedro-skills -y
+claude plugin details lema-beautify@pedro-skills
 ```
 
-Both print the same inventory: `Skills (1) abunitador`, `Agents (1) abunitador`, ~263
+Both print the same inventory: `Skills (1) lema-beautify`, `Agents (1) lema-beautify`, ~263
 always-on tokens, ~5.4k when the skill fires.
 
 The relative `"source"` in each manifest resolves against whatever directory the marketplace
@@ -60,17 +60,17 @@ was added from, so **the same files work for a local path and for a pushed GitHu
 `github` source block is needed.
 
 **Caveat for authors:** the installer copies into a version-pinned cache directory
-(`~/.claude/plugins/cache/abunitador/abunitador/<version>/`). Your local edits do **not**
+(`~/.claude/plugins/cache/lema-beautify/lema-beautify/<version>/`). Your local edits do **not**
 propagate to an installed copy. While iterating, use path 1 - a symlink or junction reads the
 directory in place.
 
 ### 3. `npx skills add`
 
 ```bash
-npx skills add PedroCarvalho768/abunitador -g --all
+npx skills add PedroCarvalho768/lema-beautify -g --all
 ```
 
-Verified: the CLI clones the repo and reports `Found 1 skill - abunitador`. Add `--list` to
+Verified: the CLI clones the repo and reports `Found 1 skill - lema-beautify`. Add `--list` to
 see what it found without installing, or `--full-depth` for a multi-skill repo.
 
 ### Then
@@ -80,40 +80,40 @@ node scripts/setup.mjs            # report which companion skills are missing
 node scripts/setup.mjs --install  # install them
 ```
 
-Then `/abunitador <brief>`, or just describe the site - the description triggers it.
+Then `/lema-beautify <brief>`, or just describe the site - the description triggers it.
 
 ## Updating
 
 **Installed as a plugin** - one command, then restart Claude Code:
 
 ```bash
-claude plugin update abunitador
+claude plugin update lema-beautify
 ```
 
 It reports the version it moved to, or tells you it is already current
-(`abunitador is already at the latest version (X.Y.Z).`). Add `-y` in a non-interactive
+(`lema-beautify is already at the latest version (X.Y.Z).`). Add `-y` in a non-interactive
 shell. A restart is required before the new version loads.
 
 If it does not see a new release, the marketplace clone is stale - refresh it first:
 
 ```bash
-claude plugin marketplace update abunitador
-claude plugin update abunitador
+claude plugin marketplace update lema-beautify
+claude plugin update lema-beautify
 ```
 
 **Installed via `npx skills add`:**
 
 ```bash
-npx skills update abunitador
+npx skills update lema-beautify
 ```
 
 **Installed by copy** - re-copy, or switch to a symlink/junction so it never goes stale:
 
 ```bash
 # Windows, no admin needed
-New-Item -ItemType Junction -Path "$HOME/.claude/skills/abunitador" -Target "<path to repo>"
+New-Item -ItemType Junction -Path "$HOME/.claude/skills/lema-beautify" -Target "<path to repo>"
 # macOS / Linux
-ln -s <path to repo> ~/.claude/skills/abunitador
+ln -s <path to repo> ~/.claude/skills/lema-beautify
 ```
 
 **Symlink or junction installs need no update step** - they read the repo in place, so
@@ -130,7 +130,7 @@ git status --porcelain                             # must be clean of scratch fi
 claude plugin tag --dry-run                        # checks the versions agree
 ```
 
-`claude plugin tag` creates an `abunitador--v<version>` git tag and **refuses unless
+`claude plugin tag` creates an `lema-beautify--v<version>` git tag and **refuses unless
 plugin.json and the enclosing marketplace entry agree**, which is the version-mismatch trap
 below caught mechanically. `--push` sends it to origin; `--dry-run` just checks.
 
@@ -141,7 +141,7 @@ Before pushing:
 3. Update the `verified` date in the SKILL.md frontmatter if you re-checked the font or library catalogs.
 4. Check `git status`, do not trust `.gitignore`. An 831 KB font-API dump got packaged into a build once because a verification run wrote it next to the skill.
 
-Only `abunitador/` needs to ship. The parent `.claude-plugin/marketplace.json` in `my-skills/` is only used
+Only `lema-beautify/` needs to ship. The parent `.claude-plugin/marketplace.json` in `my-skills/` is only used
 if you publish the monorepo.
 
 ## Layout
@@ -159,7 +159,7 @@ references/refs.md              working from reference sites and screenshots
 references/redesign-audit.md    redesign protocol: audit, preservation, levers
 scripts/setup.mjs               detect + install the companion skills
 scripts/contrast.mjs            WCAG 2.2 contrast checker
-agents/abunitador.md            thin subagent wrapper
+agents/lema-beautify.md            thin subagent wrapper
 ```
 
 ## Companions
@@ -172,7 +172,7 @@ defers to the real thing instead. `setup.mjs` handles them:
 | taste | `npx skills add Leonxlnx/taste-skill` -> `design-taste-frontend` |
 | impeccable | `npx skills add pbakaus/impeccable` |
 | frontend-design | `claude plugin install frontend-design@claude-plugins-official` |
-| web interface guidelines | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines` (optional - the skill just fetches `raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md`, and abunitador fetches it directly as a fallback) |
+| web interface guidelines | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines` (optional - the skill just fetches `raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md`, and lema-beautify fetches it directly as a fallback) |
 
 `setup.mjs` deliberately avoids `npx impeccable install`. That installer picks a scope by
 itself and writes detector hooks into the current project's `.claude/settings.local.json`
