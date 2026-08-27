@@ -11,7 +11,7 @@ fix, repeat until it passes.
 
 ## Install
 
-Three paths. All three were tested end to end on 2026-08-26, not assumed.
+Three paths. All three were tested end to end on 2026-08-26, not assumed. Paths 2 and 3 were re-verified against the renamed repo on 2026-08-27 (`marketplace add` + `install` from GitHub, local path and the enclosing monorepo; `skills add --list` reporting `Found 1 skill`).
 
 ### 1. Copy (simplest)
 
