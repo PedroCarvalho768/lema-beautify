@@ -43,24 +43,24 @@ claude plugin marketplace add ./lema-beautify     # `.` alone is rejected; needs
 claude plugin install lema-beautify@lema-beautify -y
 ```
 
-**Inside the `my-skills` monorepo** - using the parent's
+**Inside the `lema-skills` monorepo** - using the parent's
 `.claude-plugin/marketplace.json`, which lists `./lema-beautify`:
 
 ```bash
-claude plugin marketplace add ./my-skills        # or PedroCarvalho768/my-skills once pushed
+claude plugin marketplace add ./lema-skills        # or PedroCarvalho768/lema-skills once pushed
 claude plugin install lema-beautify@pedro-skills -y
 claude plugin details lema-beautify@pedro-skills
 ```
 
-Both print the same inventory: `Skills (1) lema-beautify`, `Agents (1) lema-beautify`, ~263
-always-on tokens, ~5.4k when the skill fires.
+Both print the same inventory: `Skills (1) lema-beautify`, `Agents (1) lema-beautify`, ~293
+always-on tokens, ~6.7k when the skill fires.
 
 The relative `"source"` in each manifest resolves against whatever directory the marketplace
 was added from, so **the same files work for a local path and for a pushed GitHub repo**. No
 `github` source block is needed.
 
 **Caveat for authors:** the installer copies into a version-pinned cache directory
-(`~/.claude/plugins/cache/lema-beautify/lema-beautify/<version>/`). Your local edits do **not**
+(`~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/`). Your local edits do **not**
 propagate to an installed copy. While iterating, use path 1 - a symlink or junction reads the
 directory in place.
 
@@ -141,7 +141,7 @@ Before pushing:
 3. Update the `verified` date in the SKILL.md frontmatter if you re-checked the font or library catalogs.
 4. Check `git status`, do not trust `.gitignore`. An 831 KB font-API dump got packaged into a build once because a verification run wrote it next to the skill.
 
-Only `lema-beautify/` needs to ship. The parent `.claude-plugin/marketplace.json` in `my-skills/` is only used
+Only `lema-beautify/` needs to ship. The parent `.claude-plugin/marketplace.json` in `lema-skills/` is only used
 if you publish the monorepo.
 
 ## Layout
@@ -159,7 +159,7 @@ references/refs.md              working from reference sites and screenshots
 references/redesign-audit.md    redesign protocol: audit, preservation, levers
 scripts/setup.mjs               detect + install the companion skills
 scripts/contrast.mjs            WCAG 2.2 contrast checker
-agents/lema-beautify.md            thin subagent wrapper
+agents/lema-beautify.md         thin subagent wrapper
 ```
 
 ## Companions
